@@ -24,10 +24,23 @@ if ($ler->getResultados()) {
 	<?php
 }
 else{
-		session_destroy();
-	?>
+	$ler->Query("*", "tb_funcionario","where nm_email = '$postEmail' and nm_senha = '$postSenha'");
+	if ($ler->getResultados()){
+		$_SESSION['funcionario'] = true;
+		$_SESSION['email-func'] = $ler->getResultados()[0]['nm_email'];
+		$_SESSION['senha-func'] = $ler->getResultados()[0]['nm_senha'];
+		?>
 			<script type='text/javascript'>
-				window.setTimeout("location='../admin.php';",0000);
+				window.setTimeout("location='../funcionario/orcamentos-func.php';",0000);
 			</script>
-	<?php
+		<?php
+	}
+	else{	
+		session_destroy();
+		?>
+				<script type='text/javascript'>
+					window.setTimeout("location='../admin.php';",0000);
+				</script>
+		<?php
+	}
 }

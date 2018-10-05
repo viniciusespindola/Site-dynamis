@@ -50,7 +50,7 @@ $data = date("Y-m-d");
 <div id="servicos-marcados">
 	<?php
 		$ler = new ler;
-		$ler->Query("cd_servico, nm_usuario, nm_segmento, hr_servico_marcado, dt_servico_marcado, nm_tipo_servico, ds_observacoes", "tb_agendamento a","inner join tb_servico s on a.cd_agendamento = s.cd_agendamento inner join tb_usuario  u on a.cd_usuario = u.cd_usuario");
+		$ler->Query("cd_servico, nm_usuario, nm_segmento, hr_servico_marcado, dt_servico_marcado, nm_tipo_servico, ds_observacoes", "tb_agendamento a","inner join tb_servico s on a.cd_agendamento = s.cd_agendamento inner join tb_usuario  u on a.cd_usuario = u.cd_usuario inner join tb_orcamento o on a.cd_agendamento = o.cd_agendamento ");
 		$ler->getResultados();
 		if ($ler->getResultados()){ ?>
 			<table class="table table-hover " id="tabela_todos_servicos_admin">

@@ -248,7 +248,7 @@ else{
 								<select name="frequencia" id="frequencia" class="form-control" ><br />
 									<option value="Apenas uma vez">Apenas uma vez</option>
 									<option value="Semanalmente">Semanalmente</option>
-									<option value="A cada 15 dias">A cada 15 dias</option>
+									<option value="Quinzenalmente">A cada 15 dias</option>
 									<option value="Mensal">Mensalmente</option>
 									<option value="Anual">Anualmente</option>
 								</select>
@@ -264,31 +264,31 @@ else{
 							</div>
 
 							<div class="form-group col-sm-4">
-								<input type="checkbox" name="dadosServ" id="dedetizacao" value="Dedetização" class="">
+								<input type="radio" name="dadosServ" id="dedetizacao" value="Dedetização" class="">
 								<label for="dedetizacao">Dedetização</label>
 							</div>
 
 
 							<div class="form-group col-sm-4">
-								<input type="checkbox" name="dadosServ" id="desratizacao" value="Desratizacao" class="">
+								<input type="radio" name="dadosServ" id="desratizacao" value="Desratizacao" class="">
 								<label for="desratizacao">Desratização</label>
 							</div>
 
 
 							<div class="form-group col-sm-4">
-								<input type="checkbox" name="dadosServ" id="descupinizacao" value="Descupinização" class="">
+								<input type="radio" name="dadosServ" id="descupinizacao" value="Descupinização" class="">
 								<label for="descupinizacao">Descupinização</label>
 							</div>
 
 
 							<div class="form-group col-sm-4">
-								<input type="checkbox" name="dadosServ" id="desentupimento" value="Desentupimento" class="">
+								<input type="radio" name="dadosServ" id="desentupimento" value="Desentupimento" class="">
 								<label for="desentupimento">Desentupimento</label>
 							</div>
 
 
 							<div class="form-group col-sm-6">
-								<input type="checkbox" name="dadosServ" id="desinfeccao" value="Desinfeccao" class="" onclick="mostrar('info-desinfec-caixa')">
+								<input type="radio" name="dadosServ" id="desinfeccao" value="Desinfeccao" class="" onclick="mostrar('info-desinfec-caixa')">
 								<label for="desinfeccao">Desinfecção de caixas-d’água</label>
 								<div class="display" id="info-desinfec-caixa">
 									<h5>Informações da caixa</h5>
@@ -316,7 +316,7 @@ else{
 							</div>
 
 							<div class="form-group col-sm-6">
-								<input type="checkbox" name="dadosServ" id="impermeabilizacao" value="Impermeabilização" class="" onclick="mostrar('info-caixa-imper')">
+								<input type="radio" name="dadosServ" id="impermeabilizacao" value="Impermeabilização" class="" onclick="mostrar('info-caixa-imper')">
 								<label for="impermeabilizacao">Impermeabilização de caixas</label>
 								<div class="display" id="info-caixa-imper">
 									<h5>Informações da caixa</h5>
@@ -344,7 +344,7 @@ else{
 							</div>
 
 							<div class="form-group col-sm-8">
-								<input type="checkbox" name="dadosServ" id="succao" value="Sucção" class="" onclick="mostrar('info-caixa-succao')">
+								<input type="radio" name="dadosServ" id="succao" value="Sucção" class="" onclick="mostrar('info-caixa-succao')">
 								<label for="succao">Sucção de caixa de gordura, fossa e dreno</label>
 								<div class="display" id="info-caixa-succao">
 									<h5>Informações da caixa ou fossa</h5>
@@ -380,11 +380,11 @@ else{
 
 							<div class="form-row col-lg-12 my-5">
 								<div class="form-group col-sm-6">
-									<button type="submit" name="enviar" class="form-control btn btn-red" id="inputSobrenome">Enviar</button>
+									<button type="submit" name="enviar" class="form-control btn btn-red" id="botaoEnviar">Enviar</button>
 								</div>
 
 								<div class="form-group col-sm-6">
-									<button type="reset" name="reset" class="form-control btn btn-red" id="inputSobrenome">Limpar</button>
+									<button type="reset" name="reset" class="form-control btn btn-red" id="botaoLimpar">Limpar</button>
 								</div>
 							</div>
 					</div>

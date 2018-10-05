@@ -36,7 +36,7 @@ if (isset($_SESSION['login'])) {
 		</div>
 		<div class="col-sm-4">
 			<div class="card">
-				<img src="img/caminhao1.jpg" class="card-img-top">
+				<img src="img/desratização.png" class="card-img-top">
 				<div class="card-body">
 					<h4 class="card-title text-center corTituloServico">Desratização</h4>
 				</div>
@@ -44,7 +44,7 @@ if (isset($_SESSION['login'])) {
 		</div>
 		<div class="col-sm-4">
 			<div class="card">
-				<img src="img/caminhao1.jpg" class="card-img-top">
+				<img src="img/Descupinização.png" class="card-img-top">
 				<div class="card-body">
 					<h4 class="card-title text-center corTituloServico">Descupinização</h4>
 				</div>

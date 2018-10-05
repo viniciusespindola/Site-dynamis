@@ -45,11 +45,11 @@ if (isset($_SESSION['login'])) {
 										<input type="email" name="email" class="form-control" id="inputEmail" required>
 									</div>
 									<div class="form-group col-sm-12">
-										<label for="inputAssunto">Assunto:</label>
+										<label for="inputAssunto">Assunto:<b class="d">*</b></label>
 										<input type="text" name="assunto" class="form-control" id="inputAssunto">
 									</div>
 									<div class="form-group col-sm-12">
-										<label for="inputMensagem">Sua mensagem:</label>
+										<label for="inputMensagem">Sua mensagem:<b class="d">*</b></label>
 										<textarea type="text" name="mensagem" class="form-control" id="inputMensagem"></textarea>
 									</div>
 

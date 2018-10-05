@@ -88,9 +88,9 @@ echo $ler->getResultados()[0]['count(cd_usuario)']; ?>],
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Mês', 'Agendamento', 'Serviços'],
-          ['<?php echo $resultMesAntesAnterior; ?>', <?php $ler->Query("count(*)", "tb_agendamento","where mes_agen = '$resultMesAntesAnterior'"); echo $ler->getResultados()[0]['count(*)']; ?>, 0],
-          ['<?php echo $resultMesAnterior; ?>', <?php $ler->Query("count(*)", "tb_agendamento","where mes_agen = '$resultMesAnterior'"); echo $ler->getResultados()[0]['count(*)']; ?> , 1],
-          ['<?php echo $resultMesAtual; ?>', <?php $ler->Query("count(*)", "tb_agendamento","where mes_agen = '$resultMesAtual'"); echo $ler->getResultados()[0]['count(*)']; ?> , 3]
+          ['<?php echo $resultMesAntesAnterior; ?>', <?php $ler->Query("count(*)", "tb_agendamento","where mes_agen = '$resultMesAntesAnterior'"); echo $ler->getResultados()[0]['count(*)']; ?>, <?php $ler->Query("count(*)", "tb_servico","where mes_serv = '$resultMesAntesAnterior'"); echo $ler->getResultados()[0]['count(*)']; ?>],
+          ['<?php echo $resultMesAnterior; ?>', <?php $ler->Query("count(*)", "tb_agendamento","where mes_agen = '$resultMesAnterior'"); echo $ler->getResultados()[0]['count(*)']; ?> , <?php $ler->Query("count(*)", "tb_servico","where mes_serv = '$resultMesAnterior'"); echo $ler->getResultados()[0]['count(*)']; ?>],
+          ['<?php echo $resultMesAtual; ?>', <?php $ler->Query("count(*)", "tb_agendamento","where mes_agen = '$resultMesAtual'"); echo $ler->getResultados()[0]['count(*)']; ?> , <?php $ler->Query("count(*)", "tb_servico","where mes_serv = '$resultMesAtual'"); echo $ler->getResultados()[0]['count(*)']; ?>]
         ]);
 
         var options = {

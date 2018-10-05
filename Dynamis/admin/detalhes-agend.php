@@ -57,7 +57,7 @@
 								}?>
 					<?php if($valor > 0){ ?>
 					<td><?php echo "R$".$valor.""; ?>
-						<div id="valor1" class="my-2" >
+						<div id="valor" class="my-2" >
 							<input type="text" name="valor" class="form-control"><?php echo "<a href='php/alterar_valor.php?id=".$codigo."'>" ?><button type="submit" name="enviar" class="btn btn-outline-white w-100">Alterar</button></a>
 						</div>
 					</td>
@@ -77,6 +77,7 @@
 				</form>
 			</tbody>
 		</table>
+		<a href="pdf/pdf.php"><p>Gerar PDF</p></a>
 		<a href="javascript:history.back()"><p class="d text-right">Voltar</p></a>
 	</div>
 	

@@ -1,7 +1,9 @@
 <?php
 	include_once 'header-admin.php';
 	require_once('../config/config.inc.php');
-
+	function inverteData($data, $separar = '-', $juntar = '-'){
+		return implode($juntar, array_reverse(explode($separar, $data)));
+	}
 
 ?>
 	<h1 class="text-center my-5 text-muted display-3 font">Detalhes do Usuário</h1>
@@ -41,6 +43,7 @@
 				<?php echo "<td>".$codigo."</td>"; ?>
 				<?php echo "<td>".$nome."</td>"; ?>
 				<?php echo "<td>".$segmento."</td>"; ?>
+				<?php echo "<form action='php/alterar_hora.php?id=$codigo' method='POST'>"?>
 				<?php if($hora > 0){ ?>
 				<td>
 					<?php echo "".$hora.""; ?>
@@ -58,14 +61,16 @@
 					</div>	
 				</td>
 				<?php } ?>
+				</form>
 
-				<?php if($data > 0){ ?>
 				<?php echo "<form action='php/alterar_data.php?id=$codigo' method='POST'>"?>
+				<?php if($data > 0){ ?>
+				
 				<td>
-					<?php echo "".$data.""; ?>
+					<?php echo "".inverteData($data,'-','/').""; ?>
 				
 					<div id="data" class="my-2" >
-						<input type="text" name="data" class="form-control" placeholder="Ex.: XXXX-XX-XX"><?php echo "<a href='php/alterar_data.php?id=".$codigo."'>" ?><button type="submit" name="enviar" class="btn btn-outline-white w-100">Alterar</button></a>
+						<input type="text" name="data" class="form-control" placeholder="Ex.: XX-XX-XXXX"><?php echo "<a href='php/alterar_data.php?id=".$codigo."'>" ?><button type="submit" name="enviar" class="btn btn-outline-white w-100">Alterar</button></a>
 					</div>	
 				</td>
 				<?php } else { ?>
@@ -73,12 +78,12 @@
 						<?php echo "<i>Nenhum valor encontrado</i>"; ?>
 					
 						<div id="data" class="my-2" >
-							<input type="text" name="data" class="form-control" placeholder="Ex.: XXXX-XX-XX"><?php echo "<a href='php/alterar_data.php?id=".$codigo."'>" ?><button type="submit" name="enviar" class="btn btn-outline-white w-100">Alterar</button></a>
+							<input type="text" name="data" class="form-control" placeholder="Ex.: XX-XX-XXXX"><?php echo "<a href='php/alterar_data.php?id=".$codigo."'>" ?><button type="submit" name="enviar" class="btn btn-outline-white w-100">Alterar</button></a>
 						</div>
 					</td>
-				</form>
+				
 					<?php } ?>
-
+				</form>
 				<?php echo "<td>".$tipo."</td>"; ?>
 				<?php echo "<td>".$obs."</td>"; ?>
 			</tbody>
