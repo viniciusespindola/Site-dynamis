@@ -50,7 +50,8 @@
 			</div>
 		</div>
 	</footer>
-
+	
+	<script src="js/pace.min.js"></script>
 </body>
 
 </html>

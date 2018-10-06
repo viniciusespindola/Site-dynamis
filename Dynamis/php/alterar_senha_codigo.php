@@ -95,5 +95,7 @@
 	<script type='text/javascript'>
 		window.setTimeout("location='../usuario.php';",5000);
 	</script>
+
+
 </body>
 </html>

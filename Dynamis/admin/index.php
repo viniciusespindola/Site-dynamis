@@ -57,7 +57,7 @@ echo $ler->getResultados()[0]['count(cd_usuario)']; ?>],
 </script>
 
 
-<h1 class="text-center my-5 text-muted display-3 font">Bem Vindo Administrador</h1>
+<h1 class="text-center my-5 text-muted display-3 font">Bem-Vindo Administrador</h1>
 </h1>
 <div class="container">
 	<div class="row">

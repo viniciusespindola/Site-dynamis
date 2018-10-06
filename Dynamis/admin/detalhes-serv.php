@@ -15,9 +15,10 @@
 	}
 			
 		$ler = new ler;
-		$ler->Query("cd_servico, nm_usuario, nm_segmento, hr_servico_marcado, dt_servico_marcado, nm_tipo_servico, ds_observacoes", "tb_agendamento a","inner join tb_servico s on a.cd_agendamento = s.cd_agendamento inner join tb_usuario  u on a.cd_usuario = u.cd_usuario where cd_servico = $cd_serv");
+		$ler->Query("cd_servico, u.cd_usuario, nm_usuario, nm_segmento, hr_servico_marcado, dt_servico_marcado, nm_tipo_servico, ds_observacoes", "tb_agendamento a","inner join tb_servico s on a.cd_agendamento = s.cd_agendamento inner join tb_usuario  u on a.cd_usuario = u.cd_usuario where cd_servico = $cd_serv");
 		$ler->getResultados();
 		$codigo = $ler->getResultados()[0]['cd_servico'];
+		$cd_usuario = $ler->getResultados()[0]['cd_usuario'];
 		$nome = $ler->getResultados()[0]['nm_usuario'];
 		$segmento = $ler->getResultados()[0]['nm_segmento'];
 		$hora = $ler->getResultados()[0]['hr_servico_marcado'];
@@ -41,7 +42,7 @@
 			
 			<tbody>
 				<?php echo "<td>".$codigo."</td>"; ?>
-				<?php echo "<td>".$nome."</td>"; ?>
+				<?php echo "<td><a href='detalhes-user.php?id=".$cd_usuario."'>".$nome."</a></td>"; ?>
 				<?php echo "<td>".$segmento."</td>"; ?>
 				<?php echo "<form action='php/alterar_hora.php?id=$codigo' method='POST'>"?>
 				<?php if($hora > 0){ ?>

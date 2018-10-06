@@ -15,3 +15,4 @@ $atualizar->Query("tb_orcamento", $dados, $termos);
 <script type='text/javascript'>
 	window.setTimeout("location='../usuario.php';",0000);
 </script>
+

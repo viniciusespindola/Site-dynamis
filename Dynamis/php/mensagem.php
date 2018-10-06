@@ -21,5 +21,11 @@ if ($criar->getResultados()) {
 	<?php
 }
 else{
-	echo "Não funfou!";
+	echo "Não foi possivel enviar a mensagem!";
+  ?>
+    <script type='text/javascript'>
+      window.setTimeout("location='../contato.php';",5000);
+    </script>
+  <?php
 }
+?>

@@ -75,3 +75,4 @@ $_SESSION[$sessao] = $dado;
 <script type='text/javascript'>
 	window.setTimeout("location='../usuario.php#dados';",0000);
 </script>
+

@@ -11,11 +11,12 @@
 		}
 	}
 		$ler = new ler;
-		$ler->Query("cd_orca, nm_usuario, nm_segmento, nm_tipo_servico, ds_observacoes,ds_frequencia, ds_tf, ds_tl, ds_alt, un_medida, vl_orca, cd_confirmacao","tb_orcamento o","inner join tb_agendamento a on o.cd_agendamento = a.cd_agendamento inner join tb_usuario as u on a.cd_usuario = u.cd_usuario where a.cd_agendamento = $confirme_codigo limit 1");
+		$ler->Query("cd_orca, u.cd_usuario, nm_usuario, nm_segmento, nm_tipo_servico, ds_observacoes,ds_frequencia, ds_tf, ds_tl, ds_alt, un_medida, vl_orca, cd_confirmacao","tb_orcamento o","inner join tb_agendamento a on o.cd_agendamento = a.cd_agendamento inner join tb_usuario as u on a.cd_usuario = u.cd_usuario where a.cd_agendamento = $confirme_codigo limit 1");
 		
 		
 		$ler->getResultados();
 		$codigo = $ler->getResultados()[0]['cd_orca'];
+		$cd_usuario = $ler->getResultados()[0]['cd_usuario'];
 		$nome = $ler->getResultados()[0]['nm_usuario'];
 		$seg = $ler->getResultados()[0]['nm_segmento'];
 		$tipo = $ler->getResultados()[0]['nm_tipo_servico'];
@@ -45,7 +46,7 @@
 				<?php echo "<form action='php/alterar_valor.php?id=$codigo' method='POST'>"?>
 					
 					<?php echo "<td>".$codigo."</td>"; ?>
-					<?php echo "<td><a href='usuarios-admin.php'>".$nome."</a></td>"; ?>
+					<?php echo "<td><a href='detalhes-user.php?id=".$cd_usuario."'>".$nome."</a></td>"; ?>
 					<?php echo "<td>".$seg."</td>"; ?>
 					<?php echo "<td>".$tipo."</td>"; ?>
 					<?php echo "<td>".$obs."</td>"; ?>
@@ -77,7 +78,7 @@
 				</form>
 			</tbody>
 		</table>
-		<a href="pdf/pdf.php"><p>Gerar PDF</p></a>
+		<?php echo "<td><a href='pdf/pdf-agendamento.php?id=".$codigo."' target='_blank'>Gerar PDF</a></td>"; ?>
 		<a href="javascript:history.back()"><p class="d text-right">Voltar</p></a>
 	</div>
 	
