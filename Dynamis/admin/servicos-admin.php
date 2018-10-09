@@ -10,6 +10,13 @@ function inverteData($data, $separar = '-', $juntar = '-'){
 
 <?php include_once('header-admin.php') ?>
 
+<style type="text/css">
+	#services{
+		background-image: url(img-admin/servicos.png);
+		background-repeat: no-repeat;
+	}
+</style>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#menu a").click(function( e ){
@@ -59,7 +66,7 @@ function inverteData($data, $separar = '-', $juntar = '-'){
 <div id="servicos-marcados">
 	<?php
 		$ler = new ler;
-		$ler->Query("cd_servico, nm_usuario, nm_segmento, hr_servico_marcado, dt_servico_marcado, nm_tipo_servico, ds_observacoes", "tb_agendamento a","inner join tb_servico s on a.cd_agendamento = s.cd_agendamento inner join tb_usuario  u on a.cd_usuario = u.cd_usuario inner join tb_orcamento o on a.cd_agendamento = o.cd_agendamento ");
+		$ler->Query("cd_servico, nm_usuario, nm_segmento, hr_servico_marcado, dt_servico_marcado, nm_tipo_servico, ds_observacoes, cd_confirmacao", "tb_agendamento a","inner join tb_servico s on a.cd_agendamento = s.cd_agendamento inner join tb_usuario  u on a.cd_usuario = u.cd_usuario inner join tb_orcamento o on a.cd_agendamento = o.cd_agendamento where cd_confirmacao = 1");
 		$ler->getResultados();
 		if ($ler->getResultados()){ ?>
 			<table class="table table-hover " id="tabela_todos_servicos_admin">
@@ -90,15 +97,15 @@ function inverteData($data, $separar = '-', $juntar = '-'){
 					
 					<?php echo "<td>".$nome_user[$numero_agendamento]."</td>"; ?>
 					<?php echo "<td>".$nome_segmento[$numero_agendamento]."</td>"; ?>
-					<?php if ($data_servico[$numero_agendamento] !== 0) { ?>
+					<?php if ($data_servico[$numero_agendamento] > 0) { ?>
 					<?php echo "<td>".inverteData($data_servico[$numero_agendamento],'-','/')."</td>";	?>
 					<?php } else{
-						echo "<td>Não marcado</td>";
+						echo "<td><i class='text-muted'>Não marcado</i></td>";
 					} ?>
-					<?php if ($hora_servico[$numero_agendamento] !== 0) { ?>
+					<?php if ($hora_servico[$numero_agendamento] > 0) { ?>
 					<?php echo "<td>".$hora_servico[$numero_agendamento]."</td>"; ?>
 					<?php } else{
-						echo "<td>Não marcado</td>";
+						echo "<td><i class='text-muted'>Não marcado</i></td>";
 					} ?>
 					<?php echo "<td>".$tipo_servico[$numero_agendamento]."</td>";	?>
 					<?php echo "<td>".$desc_servico[$numero_agendamento]."</td>";	?>

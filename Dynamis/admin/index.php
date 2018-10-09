@@ -29,6 +29,13 @@ $ler->Query("count(cd_usuario)", "tb_usuario u","where mes_cadastro = '$resultMe
 
 <?php include_once('header-admin.php') ?>
 
+<style type="text/css">
+	#bem-vindo{
+		background-image: url(img-admin/porta.png);
+		background-repeat: no-repeat;
+	}
+</style>
+
  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});

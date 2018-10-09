@@ -11,7 +11,7 @@
 		}
 	}
 		$ler = new ler;
-		$ler->Query("cd_orca, u.cd_usuario, nm_usuario, nm_segmento, nm_tipo_servico, ds_observacoes,ds_frequencia, ds_tf, ds_tl, ds_alt, un_medida, vl_orca, cd_confirmacao","tb_orcamento o","inner join tb_agendamento a on o.cd_agendamento = a.cd_agendamento inner join tb_usuario as u on a.cd_usuario = u.cd_usuario where a.cd_agendamento = $confirme_codigo limit 1");
+		$ler->Query("cd_orca, u.cd_usuario, nm_usuario, nm_segmento, nm_tipo_servico, ds_observacoes,ds_frequencia, ds_volume, un_medida, vl_orca, cd_confirmacao","tb_orcamento o","inner join tb_agendamento a on o.cd_agendamento = a.cd_agendamento inner join tb_usuario as u on a.cd_usuario = u.cd_usuario where a.cd_agendamento = $confirme_codigo limit 1");
 		
 		
 		$ler->getResultados();
@@ -22,7 +22,7 @@
 		$tipo = $ler->getResultados()[0]['nm_tipo_servico'];
 		$obs = $ler->getResultados()[0]['ds_observacoes'];
 		$frequencia = $ler->getResultados()[0]['ds_frequencia'];
-		$volume = $ler->getResultados()[0]['ds_tf'] * $ler->getResultados()[0]['ds_tl'] * $ler->getResultados()[0]['ds_alt'];
+		$volume = $ler->getResultados()[0]['ds_volume'];
 		$un_medida = $ler->getResultados()[0]['un_medida'];
 		$valor = $ler->getResultados()[0]['vl_orca'];
 		$confirmacao = $ler->getResultados()[0]['cd_confirmacao'];
@@ -52,7 +52,7 @@
 					<?php echo "<td>".$obs."</td>"; ?>
 					<?php echo "<td>".$frequencia."</td>"; ?>
 					<?php if($volume > 0){ ?>
-							<?php echo "<td>".$volume.$un_medida."³</td>"; ?>
+							<?php echo "<td>".$volume.$un_medida."</td>"; ?>
 							<?php } else {
 								echo "<td class='text-muted'><i>Não necessário</i></td>";
 								}?>
@@ -78,7 +78,7 @@
 				</form>
 			</tbody>
 		</table>
-		<?php echo "<td><a href='pdf/pdf-agendamento.php?id=".$codigo."' target='_blank'>Gerar PDF</a></td>"; ?>
+		<?php echo "<td><a href='pdf/pdf-agend.php?id=".$codigo."' target='_blank'>Gerar PDF</a></td>"; ?>
 		<a href="javascript:history.back()"><p class="d text-right">Voltar</p></a>
 	</div>
 	

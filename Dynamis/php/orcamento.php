@@ -19,52 +19,37 @@ $descProblema = $_POST['descProblema'];
 $dadosServ = $_POST['dadosServ'];
 $frequencia = $_POST['frequencia'];
 
-// Unidade de medida da caixa
-if (isset($_POST['tamanho-f-un1'])) {
-	$tamanho_frente = $_POST['tamanho-f-un1'];
+// Volume da caixa
+if (isset($_POST['volume-desinfeccao'])) {
+	$caixa = $_POST['volume-desinfeccao'];
+	$unidade = $_POST['un-desinfeccao'];
 }
 else{
-	$tamanho_frente = "";	
-}
-if (isset($_POST['tamanho-l-un1'])) {
-	$tamanho_lado = $_POST['tamanho-l-un1'];
-}
-else{
-	$tamanho_lado = "";	
-}
-if (isset($_POST['tamanho-a-un1'])) {
-	$tamanho_altura = $_POST['tamanho-a-un1'];
-}
-else{
-	$tamanho_altura = "";	
+
+	if (isset($_POST['volume-impermeabilizacao'])) {
+		$caixa = $_POST['volume-impermeabilizacao'];
+		$unidade = $_POST['un-impermeabilizacao'];
+	}
+	else{
+
+		if (isset($_POST['volume-succao'])) {
+			$caixa = $_POST['volume-succao'];
+			$unidade = $_POST['un-succao'];
+		}
+		else{
+			$caixa = 1;
+			$unidade = "";	
+		}
+	}
 }
 
-// Valor do tamnho da caixa
-if (isset($_POST['tamanho-f1'])) {
-	$tamanho_frente_vl = $_POST['tamanho-f1'];
-}
-else{
-	$tamanho_frente_vl = 0;	
-}
-if (isset($_POST['tamanho-l1'])) {
-	$tamanho_lado_vl = $_POST['tamanho-l1'];
-}
-else{
-	$tamanho_lado_vl = 0;	
-}
-if (isset($_POST['tamanho-a1'])) {
-	$tamanho_altura_vl = $_POST['tamanho-a1'];
-}
-else{
-	$tamanho_altura_vl = 0;	
-}
 $mes = mes();
 
 if ($dadosServ != "") {
 
 	//Inserindo dados do usuario
 	$criar = new criar;
-	$criar->Query("tb_agendamento", "cd_usuario,nm_segmento,nm_tipo_servico,ds_observacoes, ds_tf, ds_tl, ds_alt, un_medida, ds_frequencia,mes_agen", "'$codigo','$segmento','$dadosServ','$descProblema','$tamanho_frente_vl','$tamanho_lado_vl','$tamanho_altura_vl','$tamanho_frente','$frequencia','$mes'");
+	$criar->Query("tb_agendamento", "cd_usuario,nm_segmento,nm_tipo_servico,ds_observacoes, ds_volume, un_medida, ds_frequencia,mes_agen", "'$codigo','$segmento','$dadosServ','$descProblema','$caixa','$unidade','$frequencia','$mes'");
 	$criar->getResultados();
 	
 	$ler = new ler;
@@ -72,6 +57,8 @@ if ($dadosServ != "") {
 	$codigo_agendamento_resultado = $ler->getResultados()[0]['cd_agendamento'];
 	
 	$criar->Query("tb_orcamento", "cd_func,vl_orca,cd_agendamento,cd_confirmacao", "'1',' ','$codigo_agendamento_resultado','0'");
+
+	$criar->Query("tb_servico", "cd_func,hr_servico_marcado,dt_servico_marcado,cd_agendamento,mes_serv,cd_alterar", "'1',' ',' ','$codigo_agendamento_resultado','$mes','0'");
 }
 
 //Voltando usuario para tela de cadastro caso não tenha preenchido os campos

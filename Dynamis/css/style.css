@@ -315,7 +315,26 @@ label.error{
 	border-radius: 5px;
 	z-index: 999;
 }
-
+.mensagens{
+	max-height: 400px;
+	overflow: auto;
+}
+.bg-red{
+	background-color: transparent;
+	border-bottom: 3px solid red;
+	border-top: 0px solid transparent;
+	color: black;
+}
+/*Mostrar input para informações da caixa no formulario de agendamento*/
+#desinfeccao:checked ~ #info-desinfec-caixa{
+	display: block;
+}
+#impermeabilizacao:checked ~ #info-caixa-imper{
+	display: block;
+}
+#succao:checked ~ #info-caixa-succao{
+	display: block;
+}
 
 /*Redes Sociais da empresa*/
 #checked{

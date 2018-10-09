@@ -7,7 +7,12 @@ require_once('../config/config.inc.php');
 
 
 <?php include_once('header-admin.php') ?>
-
+<style type="text/css">
+	#menssagem{
+		background-image: url(img-admin/menssagem.png);
+		background-repeat: no-repeat;
+	}
+</style>
 <h1 class="text-center my-5 text-muted display-3 font">Mensagens dos Usuários</h1>
 
 
@@ -25,6 +30,7 @@ require_once('../config/config.inc.php');
 						<th>Assunto</th>
 						<th>Mensagem</th>
 						<th>Data</th>
+						<th>Exibição</th>
 					</thead>
 					
 					<tbody>
@@ -38,6 +44,7 @@ require_once('../config/config.inc.php');
 							$assunto = array($numero_agendamento =>$ler->getResultados()[$numero_agendamento]['nm_assunto']);
 							$messagem = array($numero_agendamento =>$ler->getResultados()[$numero_agendamento]['ds_msg']);
 							$data = array($numero_agendamento =>$ler->getResultados()[$numero_agendamento]['dt_msg']);
+							$display = array($numero_agendamento =>$ler->getResultados()[$numero_agendamento]['ds_display']);
 						?>
 
 						<tr>
@@ -47,6 +54,11 @@ require_once('../config/config.inc.php');
 							<?php echo "<td>".$assunto[$numero_agendamento]."</td>";	?>
 							<?php echo "<td>".$messagem[$numero_agendamento]."</td>";	?>
 							<?php echo "<td>".inverteData($data[$numero_agendamento],'-','/')."</td>";	?>
+							<?php if ($display[$numero_agendamento] == 0) { ?>
+							<?php echo "<td><a href='php/exibir.php?id=".$cd_msg[$numero_agendamento]."'><button class='btn btn-outline-white'>Mostrar</button></a></td>"; ?>
+							<?php } else{?>
+							<?php echo "<td><a href='php/ocultar.php?id=".$cd_msg[$numero_agendamento]."'><button class='btn btn-outline-white'>Ocultar</button></a></td>"; ?>
+							<?php } ?>
 						</tr>
 
 

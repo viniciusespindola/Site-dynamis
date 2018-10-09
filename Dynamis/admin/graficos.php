@@ -4,6 +4,13 @@ require_once('../config/config.inc.php'); ?>
 
 <?php include_once('header-admin.php') ?>
 
+<style type="text/css">
+  #estatisticas{
+    background-image: url(img-admin/grafico.png);
+    background-repeat: no-repeat;
+  }
+</style>
+
 <?php
 	$ler = new ler;
 	

@@ -28,7 +28,7 @@ if (isset($_SESSION['login'])) {
 					
 					<div class="row">
 						<div class="col-12">
-							<h1 class="text-center corTitulo mb-5" id="contato"><b>Contato</b></h1>
+							<h1 class="text-center corTitulo mb-5" id="contato"><b>Mensagem</b></h1>
 						</div>
 					</div>
 					
@@ -88,7 +88,54 @@ if (isset($_SESSION['login'])) {
 		</div>
 
 	</div>
+	
+	<div class="mensagens">
+		<?php 
+		require_once('config/config.inc.php');
+		function inverteData($data, $separar = '-', $juntar = '-'){
+		return implode($juntar, array_reverse(explode($separar, $data)));
+	} 
+		$ler = new Ler;
+				$ler->Query("*", "tb_msg","where ds_display = 1 order by cd_msg desc");
+				$ler->getResultados(); 
+			?>
+				<table class="table my-4" id="tabela_mensagem_admin">
+					<thead class="bg-red">	
+						<th>Nome</th>
+						<th>Assunto</th>
+						<th>Mensagem</th>
+						<th>Data</th>
+					</thead>
+					
+					<tbody>
+					<?php
+					
+					$numero_agendamento = 0;
+					while (isset($ler->getResultados()[$numero_agendamento])) {
+							$cd_msg = array($numero_agendamento => $ler->getResultados()[$numero_agendamento]['cd_msg']);
+							$nome_msg = array($numero_agendamento => $ler->getResultados()[$numero_agendamento]['nm_msg']);
+							$email_msg = array($numero_agendamento => $ler->getResultados()[$numero_agendamento]['nm_email']);
+							$assunto = array($numero_agendamento =>$ler->getResultados()[$numero_agendamento]['nm_assunto']);
+							$messagem = array($numero_agendamento =>$ler->getResultados()[$numero_agendamento]['ds_msg']);
+							$data = array($numero_agendamento =>$ler->getResultados()[$numero_agendamento]['dt_msg']);
+						?>
 
+						<tr>
+							
+							<?php echo "<td>".$nome_msg[$numero_agendamento]."</td>"; ?>
+							<?php echo "<td>".$assunto[$numero_agendamento]."</td>";	?>
+							<?php echo "<td>".$messagem[$numero_agendamento]."</td>";	?>
+							<?php echo "<td>".inverteData($data[$numero_agendamento],'-','/')."</td>";	?>
+						</tr>
+
+
+						<?php
+							$numero_agendamento++;
+					}
+					?>
+					</tbody>
+				</table>
+	</div>
 </div>
 
 

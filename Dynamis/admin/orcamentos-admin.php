@@ -12,6 +12,8 @@ function inverteData($data, $separar = '-', $juntar = '-'){
 
 <?php include_once('header-admin.php') ?>
 
+
+
 <!-- Título da página -->
 <h1 class="text-center my-5 text-muted display-3 font">Orçamentos Pedidos</h1>
 	<script type="text/javascript">
@@ -46,14 +48,19 @@ function inverteData($data, $separar = '-', $juntar = '-'){
 			</div>	
 		</div>
 	</div>
-
+<style type="text/css">
+	#orcamento{
+		background-image: url(img-admin/orcamentos.png);
+		background-repeat: no-repeat;
+	}
+</style>
 
 	<!-- todos os pedidos de orçamentos -->
 	<div id="orcamentos" class="mb-5">
 		<?php
 			
 			$ler = new ler;
-			$ler->Query("cd_orca, a.cd_agendamento, nm_usuario, nm_segmento, nm_tipo_servico, ds_observacoes,ds_frequencia, ds_tf, ds_tl, ds_alt, un_medida, vl_orca, cd_confirmacao","tb_orcamento o","inner join tb_agendamento a on o.cd_agendamento = a.cd_agendamento inner join tb_usuario as u on a.cd_usuario = u.cd_usuario");
+			$ler->Query("cd_orca, a.cd_agendamento, nm_usuario, nm_segmento, nm_tipo_servico, ds_observacoes,ds_frequencia, ds_volume, un_medida, vl_orca, cd_confirmacao","tb_orcamento o","inner join tb_agendamento a on o.cd_agendamento = a.cd_agendamento inner join tb_usuario as u on a.cd_usuario = u.cd_usuario");
 			$ler->getResultados();
 
 			$codigo = $ler->getResultados()[0]['cd_orca'];
@@ -90,7 +97,7 @@ function inverteData($data, $separar = '-', $juntar = '-'){
 							$tipo_servico = array($numero_agendamento => $ler->getResultados()[$numero_agendamento]['nm_tipo_servico']);
 							$desc_servico = array($numero_agendamento => $ler->getResultados()[$numero_agendamento]['ds_observacoes']);
 							$frequencia = array($numero_agendamento => $ler->getResultados()[$numero_agendamento]['ds_frequencia']);
-							$volume = array($numero_agendamento => $ler->getResultados()[$numero_agendamento]['ds_tf'] * $ler->getResultados()[$numero_agendamento]['ds_tl'] * $ler->getResultados()[$numero_agendamento]['ds_alt']);
+							$volume = array($numero_agendamento => $ler->getResultados()[$numero_agendamento]['ds_volume']);
 							$un_medida = array($numero_agendamento => $ler->getResultados()[$numero_agendamento]['un_medida']);
 							$vl_orca = array($numero_agendamento => $ler->getResultados()[$numero_agendamento]['vl_orca']);
 							$confirmacao = array($numero_agendamento => $ler->getResultados()[$numero_agendamento]['cd_confirmacao']);	
@@ -104,7 +111,7 @@ function inverteData($data, $separar = '-', $juntar = '-'){
 						<?php echo "<td>".$desc_servico[$numero_agendamento]."</td>"; ?>
 						<?php echo "<td>".$frequencia[$numero_agendamento]."</td>"; ?>
 						<?php if($volume[$numero_agendamento] > 0){ ?>
-						<?php echo "<td>".$volume[$numero_agendamento].$un_medida[$numero_agendamento]."³</td>"; ?>
+						<?php echo "<td>".$volume[$numero_agendamento].$un_medida[$numero_agendamento]."</td>"; ?>
 						<?php } else {
 							echo "<td class='text-muted'><i>Não necessário</i></td>";
 							}?>

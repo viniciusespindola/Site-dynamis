@@ -5,6 +5,13 @@ require_once('../config/config.inc.php'); ?>
 
 <?php include_once('header-admin.php') ?>
 
+<style type="text/css">
+	#usuarios{
+		background-image: url(img-admin/usuarios.png);
+		background-repeat: no-repeat;
+	}
+</style>
+
 <h1 class="text-center my-5 text-muted display-3 font">Usuários Cadastrados</h1>
 
 

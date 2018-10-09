@@ -174,7 +174,7 @@ else{
 		<div class="mostrar_info_serv">
 			<div class="row">
 				<?php 
-				$ler->Query("nm_segmento, hr_servico_marcado, dt_servico_marcado, nm_tipo_servico, ds_observacoes", "tb_agendamento a","inner join tb_servico s on a.cd_agendamento = s.cd_agendamento where cd_usuario = '$codigo' order by dt_servico desc");
+				$ler->Query("nm_segmento, hr_servico_marcado, dt_servico_marcado, nm_tipo_servico, ds_observacoes", "tb_agendamento a","inner join tb_servico s on a.cd_agendamento = s.cd_agendamento inner join tb_orcamento o on o.cd_agendamento = a.cd_agendamento where cd_usuario = '$codigo' and cd_confirmacao = 1 order by dt_servico desc");
 				$ler->getResultados();
 				if ($ler->getResultados()){ ?>
 					<table class="table table-striped">
@@ -288,86 +288,48 @@ else{
 
 
 							<div class="form-group col-sm-6">
-								<input type="radio" name="dadosServ" id="desinfeccao" value="Desinfeccao" class="" onclick="mostrar('info-desinfec-caixa')">
+								<input type="radio" name="dadosServ" id="desinfeccao" value="Desinfeccao" class="">
 								<label for="desinfeccao">Desinfecção de caixas-d’água</label>
 								<div class="display" id="info-desinfec-caixa">
 									<h5>Informações da caixa</h5>
-									Tamanho frontal:<label> <input type="number" name="tamanho-f" class=""> <select name="tamnho-f-un" id="tamanho-f-un" class="" ><br />
-									<option value="M">M</option><br />
-									<option value="CM">CM</option><br />
-									<option value="POL">POL</option><br />
-									<option value="PÉS">PÉS</option><br />
-									</select><br>	
-
-									Tamanho lateral: <input type="number" name="tamanho-l" class=""> <select name="tamnho-l-un" id="tamanho-l-un" class="" ><br />
-									<option value="M">M</option><br />
-									<option value="CM">CM</option><br />
-									<option value="POL">POL</option><br />
-									<option value="PÉS">PÉS</option><br />
-									</select><br>
-
-									Altura: <br><input type="number" name="tamanho-a" class=""> <select name="tamnho-a-un" id="tamanho-a-un" class="" ><br />
-									<option value="M">M</option><br />
-									<option value="CM">CM</option><br />
-									<option value="POL">POL</option><br />
-									<option value="PÉS">PÉS</option><br />
-								</select> 									
+									Volume da caixa: <input type="number" name="volume-desinfeccao" class="">
+									<select name="un-desinfeccao">
+										<option>CM³</option>
+										<option>M³</option>
+										<option>L</option>
+										<option>ML</option>
+									</select>
 								</div>
 							</div>
 
 							<div class="form-group col-sm-6">
-								<input type="radio" name="dadosServ" id="impermeabilizacao" value="Impermeabilização" class="" onclick="mostrar('info-caixa-imper')">
+								<input type="radio" name="dadosServ" id="impermeabilizacao" value="Impermeabilização" class="">
 								<label for="impermeabilizacao">Impermeabilização de caixas</label>
 								<div class="display" id="info-caixa-imper">
 									<h5>Informações da caixa</h5>
-									Tamanho frontal:<label> <input type="number" name="tamanho-f1" class=""> <select name="tamnho-f-un1" id="tamanho-f-un" class="" ><br />
-									<option value="M">M</option><br />
-									<option value="CM">CM</option><br />
-									<option value="POL">POL</option><br />
-									<option value="PÉS">PÉS</option><br />
-									</select><br>	
-
-									Tamanho lateral: <input type="number" name="tamanho-l1" class=""> <select name="tamnho-l-un1" id="tamanho-l-un" class="" ><br />
-									<option value="M">M</option><br />
-									<option value="CM">CM</option><br />
-									<option value="POL">POL</option><br />
-									<option value="PÉS">PÉS</option><br />
-									</select><br>
-
-									Altura: <br><input type="number" name="tamanho-a1" class=""> <select name="tamnho-a-un1" id="tamanho-a-un" class="" ><br />
-									<option value="M">M</option><br />
-									<option value="CM">CM</option><br />
-									<option value="POL">POL</option><br />
-									<option value="PÉS">PÉS</option><br />
-								</select> 									
+									Volume da caixa: <input type="number" name="volume-impermeabilizacao" class="">
+									<select name="un-impermeabilizacao">
+										<option>CM³</option>
+										<option>M³</option>
+										<option>L</option>
+										<option>ML</option>
+									</select>
+					
 								</div>
 							</div>
 
 							<div class="form-group col-sm-8">
-								<input type="radio" name="dadosServ" id="succao" value="Sucção" class="" onclick="mostrar('info-caixa-succao')">
+								<input type="radio" name="dadosServ" id="succao" value="Sucção" class="">
 								<label for="succao">Sucção de caixa de gordura, fossa e dreno</label>
 								<div class="display" id="info-caixa-succao">
 									<h5>Informações da caixa ou fossa</h5>
-									Tamanho frontal:<br> <input type="number" name="tamanho-f" class=""> <select name="tamnho-f-un" id="tamanho-f-un" class="" ><br />
-									<option value="M">M</option><br />
-									<option value="CM">CM</option><br />
-									<option value="POL">POL</option><br />
-									<option value="PÉS">PÉS</option><br />
-									</select><br>	
-
-									Tamanho lateral: <br><input type="number" name="tamanho-l" class=""> <select name="tamnho-l-un" id="tamanho-l-un" class="" ><br />
-									<option value="M">M</option><br />
-									<option value="CM">CM</option><br />
-									<option value="POL">POL</option><br />
-									<option value="PÉS">PÉS</option><br />
-									</select><br>
-
-									Altura: <br><input type="number" name="tamanho-a" class=""> <select name="tamnho-a-un" id="tamanho-a-un" class="" ><br />
-									<option value="M">M</option><br />
-									<option value="CM">CM</option><br />
-									<option value="POL">POL</option><br />
-									<option value="PÉS">PÉS</option><br />
-								</select> 									
+									Volume da caixa: <br><input type="number" name="volume-succao" class="">
+									<select name="un-succao" >
+										<option>CM³</option>
+										<option>M³</option>
+										<option>L</option>
+										<option>ML</option>
+									</select>					
 								</div>
 							</div>
 
