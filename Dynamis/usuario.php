@@ -159,7 +159,7 @@ else{
 				<?php }
 				else{
 				 ?>
-					<p class="text-muted col-8">.</p>
+					<p class="text-muted col-8">Você ainda não realizou nenhum orçamento conosco.</p>
 					<a href="#orçamento" class="col-4 text-muted">Realize seu primeiro orçamento <b class="d">agora</b>.</a>
 				<?php } ?>
 			</div>
@@ -218,7 +218,7 @@ else{
 				else{
 				 ?>
 					<p class="text-muted col-8">Você ainda não realizou nenhum serviço conosco.</p>
-					<a href="#orçamento" class="col-4 text-muted">Realize seu primeiro orçamento <b class="d">agora</b>.</a>
+					<a href="#orçamento" class="col-4 text-muted">Realize seu primeiro serviço <b class="d">agora</b>.</a>
 				<?php } ?>
 			</div>
 		</div>

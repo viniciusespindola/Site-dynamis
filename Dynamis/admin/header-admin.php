@@ -1,4 +1,21 @@
+<?php 
+	session_start();
+	if (isset($_SESSION['admin'])) {
+		if ($_SESSION['admin']) {
+			$email_adm = $_SESSION['email-adm'];
+			$senha_adm = $_SESSION['senha-adm'];
 
+		}
+	}
+	else{
+		session_destroy();
+		?>
+		<script type='text/javascript'>
+			window.setTimeout("location='admin.php';",0000);
+		</script>
+		<?php
+	}
+?>
 <!DOCTYPE html>
 <html>
 <head>

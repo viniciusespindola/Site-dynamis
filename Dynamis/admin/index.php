@@ -2,20 +2,7 @@
 header("content-type: text/html;charset=utf-8");
 require_once('../config/config.inc.php');
 
-session_start();
-if (isset($_SESSION['admin'])) {
-	$email_adm = $_SESSION['email-adm'];
-	$senha_adm = $_SESSION['senha-adm'];
 
-}
-else{
-	session_destroy();
-	?>
-	<script type='text/javascript'>
-		window.setTimeout("location='admin.php';",0000);
-	</script>
-	<?php
-}
 
 
 $mes = date("m");

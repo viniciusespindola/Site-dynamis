@@ -1,6 +1,6 @@
 <?php
 session_start();
-session_destroy();
+$_SESSION['login'] = false;
 ?>
 <script type="text/javascript">
 	window.setTimeout("location='../index.php';",0);

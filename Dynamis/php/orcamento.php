@@ -20,24 +20,28 @@ $dadosServ = $_POST['dadosServ'];
 $frequencia = $_POST['frequencia'];
 
 // Volume da caixa
-if (isset($_POST['volume-desinfeccao'])) {
+
+$caixa = 0;
+$unidade = "";
+
+if ($_POST['volume-desinfeccao'] > 0) {
 	$caixa = $_POST['volume-desinfeccao'];
 	$unidade = $_POST['un-desinfeccao'];
 }
 else{
 
-	if (isset($_POST['volume-impermeabilizacao'])) {
+	if ($_POST['volume-impermeabilizacao'] > 0) {
 		$caixa = $_POST['volume-impermeabilizacao'];
 		$unidade = $_POST['un-impermeabilizacao'];
 	}
 	else{
 
-		if (isset($_POST['volume-succao'])) {
+		if ($_POST['volume-succao'] > 0) {
 			$caixa = $_POST['volume-succao'];
 			$unidade = $_POST['un-succao'];
 		}
 		else{
-			$caixa = 1;
+			$caixa = 0;
 			$unidade = "";	
 		}
 	}

@@ -50,7 +50,7 @@
 					<?php echo "".$hora.""; ?>
 					
 					<div id="hora" class="my-2" >
-						<input type="text" name="hora" class="form-control" placeholder="Ex.: XX:XX"><?php echo "<a href='php/alterar_hora.php?id=".$codigo."'>" ?><button type="submit" name="enviar" class="btn btn-outline-white w-100">Alterar</button></a>
+						<input type="time" min="08:00" max="16:00" name="hora" class="form-control" placeholder="Ex.: XX:XX"><?php echo "<a href='php/alterar_hora.php?id=".$codigo."'>" ?><button type="submit" name="enviar" class="btn btn-outline-white w-100">Alterar</button></a>
 					</div>	
 				</td>
 				<?php } else { ?>
@@ -58,7 +58,7 @@
 					<?php echo "<i>Nenhum valor encontrado</i>"; ?>
 					
 					<div id="hora" class="my-2" >
-						<input type="text" name="hora" class="form-control" placeholder="Ex.: XX:XX"><?php echo "<a href='php/alterar_hora.php?id=".$codigo."'>" ?><button type="submit" name="enviar" class="btn btn-outline-white w-100">Alterar</button></a>
+						<input type="time" min="08:00" max="16:00" name="hora" class="form-control" placeholder="Ex.: XX:XX"><?php echo "<a href='php/alterar_hora.php?id=".$codigo."'>" ?><button type="submit" name="enviar" class="btn btn-outline-white w-100">Alterar</button></a>
 					</div>	
 				</td>
 				<?php } ?>
@@ -71,7 +71,7 @@
 					<?php echo "".inverteData($data,'-','/').""; ?>
 				
 					<div id="data" class="my-2" >
-						<input type="text" name="data" class="form-control" placeholder="Ex.: XX-XX-XXXX"><?php echo "<a href='php/alterar_data.php?id=".$codigo."'>" ?><button type="submit" name="enviar" class="btn btn-outline-white w-100">Alterar</button></a>
+						<input type="date" name="data" class="form-control" placeholder="Ex.: XX-XX-XXXX"><?php echo "<a href='php/alterar_data.php?id=".$codigo."'>" ?><button type="submit" name="enviar" class="btn btn-outline-white w-100">Alterar</button></a>
 					</div>	
 				</td>
 				<?php } else { ?>
@@ -79,7 +79,7 @@
 						<?php echo "<i>Nenhum valor encontrado</i>"; ?>
 					
 						<div id="data" class="my-2" >
-							<input type="text" name="data" class="form-control" placeholder="Ex.: XX-XX-XXXX"><?php echo "<a href='php/alterar_data.php?id=".$codigo."'>" ?><button type="submit" name="enviar" class="btn btn-outline-white w-100">Alterar</button></a>
+							<input type="date" name="data" class="form-control" placeholder="Ex.: XX-XX-XXXX"><?php echo "<a href='php/alterar_data.php?id=".$codigo."'>" ?><button type="submit" name="enviar" class="btn btn-outline-white w-100">Alterar</button></a>
 						</div>
 					</td>
 				
@@ -89,6 +89,7 @@
 				<?php echo "<td>".$obs."</td>"; ?>
 			</tbody>
 		</table>
+		<?php echo "<td><a href='pdf/pdf-serv.php?id=".$codigo."' target='_blank'>Gerar PDF</a></td>"; ?>
 		<a href="javascript:history.back()"><p class="d text-right">Voltar</p></a>
 	</div>
 
@@ -101,4 +102,9 @@
 				document.getElementById(id).style.display = "block";
 			}
 		}
+	</script>
+
+	<script type="text/javascript">
+		var today = new Date().toISOString().split('T')[0];
+		document.getElementsByName("data")[0].setAttribute('min', today);
 	</script>

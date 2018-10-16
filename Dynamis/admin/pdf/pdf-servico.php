@@ -1,6 +1,15 @@
 <?php
 session_start();
-	$codigo_orca = $_SESSION['codigo'];
+	$codigo_serv = $_SESSION['codigo'];
+
+	$cd_func = $_SESSION['cd_func'];
+	$nm_func = $_SESSION['nm_func'];
+	$hr_serv = $_SESSION['hr_serv'];
+	$if_hr_serv = $hr_serv > 0 ? $hr_serv : "<i class='text-muted'>Ainda não marcado</i>";
+	$dt_serv = $_SESSION['dt_serv'];
+	$if_dt_serv = $dt_serv > 0 ? $dt_serv : "<i class='text-muted'>Ainda não marcado</i>";
+	$mes_serv = $_SESSION['mes_serv'];
+
 	$seg = $_SESSION['seg'];
 	$tipo = $_SESSION['tipo'];
 	$obs = $_SESSION['obs'];
@@ -46,29 +55,35 @@ session_start();
 		
 			<div class="container my-5">
 				
-				<p>Informações do pedido.</p>
+				<p>Informações do pedido de serviço.</p>
 
 				<table class="table table-bordered">
 					<thead class="bg-dark" style="color: white;">
 						<tr>
-							<th>Código do Orçamento</th>
+							<th>Código do Serviço</th>
+							<th>Código do Funcionário</th>
+							<th>Nome do Funcionário</th>
+							<th>Data do Serviço</th>
+							<th>Hora do Serviço</th>
 							<th>Segmento</th>
-							<th>Tipo</th>
-							<th>Descrição</th>
-							
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>'.$codigo_orca.'</td>
+							<td>'.$codigo_serv.'</td>
+							<td>'.$cd_func.'</td>
+							<td>'.$nm_func.'</td>
+							<td>'.$if_hr_serv.'</td>
+							<td>'.$if_dt_serv.'</td>
 							<td>'.$seg.'</td>
-							<td>'.$tipo.'</td>
-							<td>'.$obs.'</td>
+							
 							
 						</tr>
 					</tbody>
 					<thead class="bg-dark" style="color: white;">
 						<tr>
+							<th>Tipo</th>
+							<th>Descrição<>
 							<th>Frequência</th>
 							<th>Volume</th>
 							<th>Valor do Serviço</th>
@@ -77,6 +92,8 @@ session_start();
 					</thead>
 					<tbody>
 						<tr>
+							<td>'.$tipo.'</td>
+							<td>'.$obs.'</td>
 							<td>'.$frequencia.'</td>
 							<td>'.$if_volume.'</td>
 							<td>'.$if_valor.'</td>

@@ -1,11 +1,14 @@
+
 <?php 
 session_start();
 if (isset($_SESSION['login'])) {
-	$login = $_SESSION['login'];
-	$codigo = $_SESSION['codigo'];
-	$nome = $_SESSION['nome'];
-	$email = $_SESSION['email'];
-	$senha = $_SESSION['senha'];
+	if ($_SESSION['login']) {
+		$login = $_SESSION['login'];
+		$codigo = $_SESSION['codigo'];
+		$nome = $_SESSION['nome'];
+		$email = $_SESSION['email'];
+		$senha = $_SESSION['senha'];	
+	}
 }
 ?>
 <!-- Cabeçalho do site -->

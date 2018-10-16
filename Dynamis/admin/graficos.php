@@ -35,7 +35,7 @@ require_once('../config/config.inc.php'); ?>
 	echo $ler->getResultados()[0]['count(*)']; ?>, "#8B1A1A"],
         ["Agendamentos", <?php $ler->Query("count(*)", "tb_agendamento");
 	echo $ler->getResultados()[0]['count(*)']; ?>, "#f00"],
-        ["Serviços", <?php $ler->Query("count(*)", "tb_servico", "where hr_servico_marcado > 0 and dt_servico_marcado > 0");
+        ["Serviços", <?php $ler->Query("count(*)", "tb_orcamento", "where cd_confirmacao = 1");
 	echo $ler->getResultados()[0]['count(*)']; ?>, "silver"]
       ]);
 
@@ -95,9 +95,11 @@ echo $ler->getResultados()[0]['count(cd_usuario)']; ?>],
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Mês', 'Agendamento', 'Serviços'],
-          ['<?php echo $resultMesAntesAnterior; ?>', <?php $ler->Query("count(*)", "tb_agendamento","where mes_agen = '$resultMesAntesAnterior'"); echo $ler->getResultados()[0]['count(*)']; ?>, <?php $ler->Query("count(*)", "tb_servico","where mes_serv = '$resultMesAntesAnterior'"); echo $ler->getResultados()[0]['count(*)']; ?>],
-          ['<?php echo $resultMesAnterior; ?>', <?php $ler->Query("count(*)", "tb_agendamento","where mes_agen = '$resultMesAnterior'"); echo $ler->getResultados()[0]['count(*)']; ?> , <?php $ler->Query("count(*)", "tb_servico","where mes_serv = '$resultMesAnterior'"); echo $ler->getResultados()[0]['count(*)']; ?>],
-          ['<?php echo $resultMesAtual; ?>', <?php $ler->Query("count(*)", "tb_agendamento","where mes_agen = '$resultMesAtual'"); echo $ler->getResultados()[0]['count(*)']; ?> , <?php $ler->Query("count(*)", "tb_servico","where mes_serv = '$resultMesAtual'"); echo $ler->getResultados()[0]['count(*)']; ?>]
+          ['<?php echo $resultMesAntesAnterior; ?>', <?php $ler->Query("count(*)", "tb_agendamento","where mes_agen = '$resultMesAntesAnterior'"); echo $ler->getResultados()[0]['count(*)']; ?>, <?php $ler->Query("count(*)", "tb_servico s","inner join tb_agendamento a on a.cd_agendamento = s.cd_agendamento inner join tb_orcamento o on o.cd_agendamento = a.cd_agendamento where cd_confirmacao = 1 and mes_serv = '$resultMesAntesAnterior'"); echo $ler->getResultados()[0]['count(*)']; ?>],
+
+          ['<?php echo $resultMesAnterior; ?>', <?php $ler->Query("count(*)", "tb_agendamento","where mes_agen = '$resultMesAnterior'"); echo $ler->getResultados()[0]['count(*)']; ?> , <?php $ler->Query("count(*)", "tb_servico s","inner join tb_agendamento a on a.cd_agendamento = s.cd_agendamento inner join tb_orcamento o on o.cd_agendamento = a.cd_agendamento where cd_confirmacao = 1 and mes_serv = '$resultMesAnterior'"); echo $ler->getResultados()[0]['count(*)']; ?>],
+
+          ['<?php echo $resultMesAtual; ?>', <?php $ler->Query("count(*)", "tb_agendamento","where mes_agen = '$resultMesAtual'"); echo $ler->getResultados()[0]['count(*)']; ?> , <?php $ler->Query("count(*)", "tb_servico s","inner join tb_agendamento a on a.cd_agendamento = s.cd_agendamento inner join tb_orcamento o on o.cd_agendamento = a.cd_agendamento where cd_confirmacao = 1 and mes_serv = '$resultMesAtual'"); echo $ler->getResultados()[0]['count(*)']; ?>]
         ]);
 
         var options = {
@@ -115,12 +117,12 @@ echo $ler->getResultados()[0]['count(cd_usuario)']; ?>],
 
 <h1 class="text-center text-muted display-3 font">Gráficos de utilização do site</h1>
 
-	<div class="row">
-		<div id="columnchart_values" class="col-7" style="height: 300px;"></div>
+	<div class="row esta">
+		<div id="columnchart_values" class="col-8" style="height: 300px;"></div>
 
-		<div class="row col-5">
-			<div id="curve_chart" class="w-100 col-12" style="height: 300px;"></div>
+		<div class="row col-4">
+			<div id="curve_chart" class="col-12" style="height: 300px;"></div>
 
-			<div id="servicos" class="w-100 col-12" style="height: 300px; color: red;"></div>
+			<div id="servicos" class=" col-12" style="height: 300px; color: red;"></div>
 		</div>
 	</div>

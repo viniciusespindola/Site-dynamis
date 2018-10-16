@@ -30,11 +30,11 @@ function inverteData($data, $separar = '-', $juntar = '-'){
 <h1 class="text-center my-5 text-muted display-3 font">Serviços Marcados</h1>
 
 <!-- Menu dos serviços -->
-	<div class="row " id="menu">
+	<div class="row" id="menu">
 		<div class="navbar nav navbar-expand-lg navbar-light bg-light col-12 pl-5 mb-4">
 			
 
-				<ul class="navbar-nav mr-auto" id="link">
+				<ul class="navbar-nav mr-auto ml-auto" id="link">
 					<li class="nav-item">
 						<a class="btn btn-white mr-2 mb-2" href="servicos-admin.php">Todos os serviços</a>
 					</li>

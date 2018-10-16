@@ -1,6 +1,6 @@
 <?php
 session_start();
-session_destroy();
+$_SESSION['admin'] = false;
 ?>
 <script type="text/javascript">
 	window.setTimeout("location='../admin.php';",0);
