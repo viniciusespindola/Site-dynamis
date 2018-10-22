@@ -112,6 +112,11 @@ nav a:hover{
 	background-repeat: no-repeat;
 	height: 30px;
 }
+#func{
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAhCAYAAABX5MJvAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIcSURBVFhH7ZdNiE1hHIevbxuFjY0mQ8lSKBEZxQYLEcpChCwkkmSvjJkIC5amhI1EFjbCQmwoViwlhIXP8v35PP9D3Xs79zhz5z13NU899f7ec7rn3Pf71IYZIpNxN57H23gPz+IS7Aib8BO+wnPYi0fxJv78m7uwMtbhD9yPY6xoYgc+xC+4xorUjMLneCxSMYfwA9ptSVmEv3FGpGLG4xvcHikhW/F1ViyFY+REVkzHHnySFUtxFU9lxXRsxrdZsRQP8GBWTMdSdExMilSMY+Izro+UkInoSyyLVEwPeu+USAlZji5GiyMVswK91xmVlF34IiuW4iUmn6Lz0SbeFqmYLei9CyIl5gh+QwdeKybgdzwZqQJchn3Aykj5bMD3OC5SRVzCuzg6UiNj8T6eiVQhM9F/ujdSI/vwHU6LVDGP8UBWbMC6R1mxetxD/NfNOI0Hs7+0jdPOGbI6UiNr0WtlFrS2mIp9+BUv4khsxoOP13yR49iNSXDpvYBOzWe4E0dgK7zmSmm3uHRfwTL7TS6z8Aa68t1Cd8S8c2UrbBW77Br+wjs4G0uzCp2GHucXWjFE5uF1dHvfaMX/sAU+oqeivAWpCJveb5BmbRHHUD86puZgIX7EeGwfTNP/w65z/Byu8yn6LSJ2kSvq5UgFuOKdxrlt6Ev4ZVZf50MH6rIbm93iC+Xi0c0f6oRO+VwcA9M7pJvdMHXUan8AepGK/kqipfkAAAAASUVORK5CYII=);
+	background-repeat: no-repeat;
+	height: 30px;
+}
 #estatisticas{
 	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGHSURBVEhL7ZY/KEVRHMevP0UpGQwsyoAMymSTssggZTWZ5M9iEItBmWyKwaAs/hQmFovBm0SKkSjFpkyKBZ/v/VPX7f457nvvWN6nPr1zfvfc9+2e89451ymCbZzwmnY5wUWvmY/NnD7hRaRm6jw633jgF2xY8HWDe9SwxBRWgq1gJbgft7Dd7Xn8KXgAx72mMbV4jfr+VRV8jIMb8BM1blAFA1rwDPVf38MuDDAK1hRd4is++5+jmIamV2NPsVmFCJnBY/iGh9iE1agtUk+/jvUYpgrnUNeXUePjSAzWzY/4gbMqROjDB7zBbhWgEbX7aUaGVUghMfgcVVtye/EoaBff8QjvUUvShlkkBnegLupHlcUG6v47rFPBgMw1NqEVtfEPuT0zShKch0qwNX4F/8sbSNxFE4t+58pDDV7hmtuzhEK1a2mJvnAay04Q+oK3qKNPe/oMlo1waCce4wLqmEw6UIomGip6UVumKFv4DoZD4wjCJ91eCdDT7mNaaMAIrnjNNBznB8nrr9a9Ee8EAAAAAElFTkSuQmCC);
 	background-repeat: no-repeat;
@@ -158,9 +163,17 @@ a{
 #data, #hora{
 	display: none;
 }
+/* Detalhes do funcionário */
 
+#nome-func, #email-func, #especialidade{
+	display: none;
+}
 
-
+/* Página de edição */
+.titulo-editar{
+	font-weight: normal;
+	font-size: 25px;
+}
 
 
 /*Pace*/

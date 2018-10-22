@@ -8,10 +8,9 @@ session_start();
 
 function mes()
 {
-	$mes = date("m");
+	$mes = date("Y-m-d");
 	$meses = array("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro");
-	$resultMesAtual = $meses[$mes - 1];
-	return $resultMesAtual;
+	return $mes;
 }
 $codigo = $_SESSION['codigo'];
 $segmento = $_POST['segmento'];
@@ -53,7 +52,7 @@ if ($dadosServ != "") {
 
 	//Inserindo dados do usuario
 	$criar = new criar;
-	$criar->Query("tb_agendamento", "cd_usuario,nm_segmento,nm_tipo_servico,ds_observacoes, ds_volume, un_medida, ds_frequencia,mes_agen", "'$codigo','$segmento','$dadosServ','$descProblema','$caixa','$unidade','$frequencia','$mes'");
+	$criar->Query("tb_agendamento", "cd_usuario,nm_segmento,nm_tipo_servico,ds_observacoes, ds_volume, un_medida, ds_frequencia,dt_cadastro_agen", "'$codigo','$segmento','$dadosServ','$descProblema','$caixa','$unidade','$frequencia','$mes'");
 	$criar->getResultados();
 	
 	$ler = new ler;
@@ -62,7 +61,7 @@ if ($dadosServ != "") {
 	
 	$criar->Query("tb_orcamento", "cd_func,vl_orca,cd_agendamento,cd_confirmacao", "'1',' ','$codigo_agendamento_resultado','0'");
 
-	$criar->Query("tb_servico", "cd_func,hr_servico_marcado,dt_servico_marcado,cd_agendamento,mes_serv,cd_alterar", "'1',' ',' ','$codigo_agendamento_resultado','$mes','0'");
+	$criar->Query("tb_servico", "cd_func,hr_servico_marcado,dt_servico_marcado,cd_agendamento,dt_cadastro_serv,cd_alterar", "'1',' ',' ','$codigo_agendamento_resultado','$mes','0'");
 }
 
 //Voltando usuario para tela de cadastro caso não tenha preenchido os campos

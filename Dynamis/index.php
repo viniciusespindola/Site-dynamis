@@ -1,6 +1,9 @@
-
 <?php 
-session_start();
+require_once('config/config.inc.php');
+error_reporting(E_ALL ^ E_NOTICE);
+$counter = new HitCounter;
+$counter->processViews();
+
 if (isset($_SESSION['login'])) {
 	if ($_SESSION['login']) {
 		$login = $_SESSION['login'];
@@ -21,7 +24,7 @@ if (isset($_SESSION['login'])) {
 
 <div class="container">
 	<video class="w-100 h-100 video mb-3" loop autoplay="autoplay"  muted="true" >
-		<source src="videos/VID-20180827-WA0000.mp4" type="video/mp4">
+		<source src="videos/dynamis-intro.mp4" type="video/mp4">
 		<object data=""  class=" w-100 h-100"  >
 			<embed  src="videos/VID-20180827-WA0000.mp4">
 		</object>

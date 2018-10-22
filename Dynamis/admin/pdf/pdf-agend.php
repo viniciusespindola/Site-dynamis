@@ -1,5 +1,7 @@
 <?php
-
+function inverteData($data, $separar = '-', $juntar = '-'){
+	return implode($juntar, array_reverse(explode($separar, $data)));
+}
 require_once('../../config/config.inc.php');
 	if ($_SERVER['REQUEST_METHOD']=='GET') {
 		if (isset($_GET['id'])) { 		 
@@ -7,7 +9,7 @@ require_once('../../config/config.inc.php');
 		}
 	}
 		$ler = new ler;
-		$ler->Query("cd_orca, u.cd_usuario, nm_usuario, cd_cpf,cd_cnpj, nm_email,nm_endereco, nm_numero,nm_complemento,cd_cep,mes_cadastro,cd_telefone,cd_telefone_alt, nm_segmento, nm_tipo_servico, ds_observacoes,ds_frequencia, ds_volume, un_medida, vl_orca, cd_confirmacao","tb_orcamento o","inner join tb_agendamento a on o.cd_agendamento = a.cd_agendamento inner join tb_usuario as u on a.cd_usuario = u.cd_usuario inner join tb_contato c on c.cd_usuario = u.cd_usuario where a.cd_agendamento = $confirme_codigo");
+		$ler->Query("cd_orca, u.cd_usuario, nm_usuario, cd_cpf,cd_cnpj, nm_email,nm_endereco, nm_numero,nm_complemento,cd_cep,dt_cadastro_user,cd_telefone,cd_telefone_alt, nm_segmento, nm_tipo_servico, ds_observacoes,ds_frequencia, ds_volume, un_medida, vl_orca, cd_confirmacao","tb_orcamento o","inner join tb_agendamento a on o.cd_agendamento = a.cd_agendamento inner join tb_usuario as u on a.cd_usuario = u.cd_usuario inner join tb_contato c on c.cd_usuario = u.cd_usuario where a.cd_agendamento = $confirme_codigo");
 		
 			session_start();
 			$_SESSION['codigo'] = $ler->getResultados()[0]['cd_orca'];
@@ -29,7 +31,7 @@ require_once('../../config/config.inc.php');
 			$_SESSION['pdfnumero'] = $ler->getResultados()[0]['nm_numero'];
 			$_SESSION['pdfcomplemento'] = $ler->getResultados()[0]['nm_complemento'];
 			$_SESSION['pdfcep'] = $ler->getResultados()[0]['cd_cep'];
-			$_SESSION['pdfmes'] = $ler->getResultados()[0]['mes_cadastro'];
+			$_SESSION['pdfmes'] = inverteData($ler->getResultados()[0]['dt_cadastro_user'],'-','/');
 			$_SESSION['pdftelefone'] = $ler->getResultados()[0]['cd_telefone'];
 			$_SESSION['pdftelefone_alternativo'] = $ler->getResultados()[0]['cd_telefone_alt'];
 			

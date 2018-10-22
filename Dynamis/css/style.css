@@ -23,9 +23,18 @@ p.paragrafo{
 	border: 5px solid white;
 }
 .d{
-	color: #ed3237;
+	color: #f00;
 	font-weight: bold;
 }
+/*Estilização da parte de valores da página quem somos*/
+.lista-vl{
+	text-decoration: none !important;
+	color: black;
+	font-size: 12pt;
+	font-weight: normal;
+	text-align: justify;
+}
+
 .ynamis{
 	color: #00009F;
 	font-weight: normal;

@@ -13,7 +13,7 @@ if (isset($_GET['id'])) {
 
 $data = $_POST['data'];
 
-$dados = "dt_servico_marcado = '".inverteData($data)."'";
+$dados = "dt_servico_marcado = '".inverteData($data,'/','-')."'";
 $tb_banco = "tb_servico";
 
 $atualizar = new atualizar;

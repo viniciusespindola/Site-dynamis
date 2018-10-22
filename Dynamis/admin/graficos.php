@@ -17,9 +17,15 @@ require_once('../config/config.inc.php'); ?>
 
 	$mes = date("m");
 	$meses = array("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro");
-	$resultMesAtual = $meses[$mes - 1];
-	$resultMesAnterior = $meses[$mes - 2];
-	$resultMesAntesAnterior = $meses[$mes - 3];
+	
+  $resultMesAtual = $mes;
+  $mesAtualEx = $meses[$mes -1];
+
+	$resultMesAnterior = $mes - 1;
+  $mesAnteriorEx = $meses[$mes -2];
+
+	$resultMesAntesAnterior = $mes - 2;
+  $mesAnteAnteriorEx = $meses[$mes -3];
 	
 	
 ?>
@@ -67,11 +73,11 @@ require_once('../config/config.inc.php'); ?>
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Mês', 'Usuários'],
-          ['<?php echo $resultMesAntesAnterior; ?>',  <?php $ler->Query("count(cd_usuario)", "tb_usuario u","where mes_cadastro = '$resultMesAntesAnterior'");
+          ['<?php echo $mesAnteAnteriorEx; ?>',  <?php $ler->Query("count(cd_usuario)", "tb_usuario u","where MONTH(dt_cadastro_user) = '$resultMesAntesAnterior'");
 echo $ler->getResultados()[0]['count(cd_usuario)']; ?>],
-          ['<?php echo $resultMesAnterior; ?>',  <?php $ler->Query("count(cd_usuario)", "tb_usuario u","where mes_cadastro = '$resultMesAnterior'");
+          ['<?php echo $mesAnteriorEx; ?>',  <?php $ler->Query("count(cd_usuario)", "tb_usuario u","where MONTH(dt_cadastro_user) = '$resultMesAnterior'");
 echo $ler->getResultados()[0]['count(cd_usuario)']; ?>],
-          ['<?php echo $resultMesAtual; ?>',  <?php $ler->Query("count(cd_usuario)", "tb_usuario u","where mes_cadastro = '$resultMesAtual'"); echo $ler->getResultados()[0]['count(cd_usuario)']; ?>]
+          ['<?php echo $mesAtualEx; ?>',  <?php $ler->Query("count(cd_usuario)", "tb_usuario u","where MONTH(dt_cadastro_user) = '$resultMesAtual'"); echo $ler->getResultados()[0]['count(cd_usuario)']; ?>]
         ]);
 
         var options = {
@@ -95,11 +101,11 @@ echo $ler->getResultados()[0]['count(cd_usuario)']; ?>],
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Mês', 'Agendamento', 'Serviços'],
-          ['<?php echo $resultMesAntesAnterior; ?>', <?php $ler->Query("count(*)", "tb_agendamento","where mes_agen = '$resultMesAntesAnterior'"); echo $ler->getResultados()[0]['count(*)']; ?>, <?php $ler->Query("count(*)", "tb_servico s","inner join tb_agendamento a on a.cd_agendamento = s.cd_agendamento inner join tb_orcamento o on o.cd_agendamento = a.cd_agendamento where cd_confirmacao = 1 and mes_serv = '$resultMesAntesAnterior'"); echo $ler->getResultados()[0]['count(*)']; ?>],
+          ['<?php echo $mesAnteAnteriorEx; ?>', <?php $ler->Query("count(*)", "tb_agendamento","where MONTH(dt_cadastro_agen) = '$resultMesAntesAnterior'"); echo $ler->getResultados()[0]['count(*)']; ?>, <?php $ler->Query("count(*)", "tb_servico s","inner join tb_agendamento a on a.cd_agendamento = s.cd_agendamento inner join tb_orcamento o on o.cd_agendamento = a.cd_agendamento where cd_confirmacao = 1 and MONTH(dt_cadastro_serv) = '$resultMesAntesAnterior'"); echo $ler->getResultados()[0]['count(*)']; ?>],
 
-          ['<?php echo $resultMesAnterior; ?>', <?php $ler->Query("count(*)", "tb_agendamento","where mes_agen = '$resultMesAnterior'"); echo $ler->getResultados()[0]['count(*)']; ?> , <?php $ler->Query("count(*)", "tb_servico s","inner join tb_agendamento a on a.cd_agendamento = s.cd_agendamento inner join tb_orcamento o on o.cd_agendamento = a.cd_agendamento where cd_confirmacao = 1 and mes_serv = '$resultMesAnterior'"); echo $ler->getResultados()[0]['count(*)']; ?>],
+          ['<?php echo $mesAnteriorEx; ?>', <?php $ler->Query("count(*)", "tb_agendamento","where MONTH(dt_cadastro_agen) = '$resultMesAnterior'"); echo $ler->getResultados()[0]['count(*)']; ?> , <?php $ler->Query("count(*)", "tb_servico s","inner join tb_agendamento a on a.cd_agendamento = s.cd_agendamento inner join tb_orcamento o on o.cd_agendamento = a.cd_agendamento where cd_confirmacao = 1 and MONTH(dt_cadastro_serv) = '$resultMesAnterior'"); echo $ler->getResultados()[0]['count(*)']; ?>],
 
-          ['<?php echo $resultMesAtual; ?>', <?php $ler->Query("count(*)", "tb_agendamento","where mes_agen = '$resultMesAtual'"); echo $ler->getResultados()[0]['count(*)']; ?> , <?php $ler->Query("count(*)", "tb_servico s","inner join tb_agendamento a on a.cd_agendamento = s.cd_agendamento inner join tb_orcamento o on o.cd_agendamento = a.cd_agendamento where cd_confirmacao = 1 and mes_serv = '$resultMesAtual'"); echo $ler->getResultados()[0]['count(*)']; ?>]
+          ['<?php echo $mesAtualEx; ?>', <?php $ler->Query("count(*)", "tb_agendamento","where MONTH(dt_cadastro_agen) = '$resultMesAtual'"); echo $ler->getResultados()[0]['count(*)']; ?> , <?php $ler->Query("count(*)", "tb_servico s","inner join tb_agendamento a on a.cd_agendamento = s.cd_agendamento inner join tb_orcamento o on o.cd_agendamento = a.cd_agendamento where cd_confirmacao = 1 and MONTH(dt_cadastro_serv) = '$resultMesAtual'"); echo $ler->getResultados()[0]['count(*)']; ?>]
         ]);
 
         var options = {
@@ -115,7 +121,7 @@ echo $ler->getResultados()[0]['count(cd_usuario)']; ?>],
 
 
 
-<h1 class="text-center text-muted display-3 font">Gráficos de utilização do site</h1>
+<h1 class="text-center text-muted display-3 font">Gráficos de Estatísticas do Site</h1>
 
 	<div class="row esta">
 		<div id="columnchart_values" class="col-8" style="height: 300px;"></div>

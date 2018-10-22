@@ -51,7 +51,7 @@ session_start();
 	$dompdf->load_html('
 			<link rel="stylesheet" type="text/css" href="../../css/bootstrap.css">
 			
-			<h1 style="text-align: center;">Informações de pedido de orçamento</h1>
+			<h1 style="text-align: center;">Informações de pedido de Serviço</h1>
 		
 			<div class="container my-5">
 				
@@ -132,7 +132,7 @@ session_start();
 							<th>Complemento</th>
 							<th>CEP</th>
 							<th>Telefone Alternativo</th>
-							<th>Mês do cadastro</th>
+							<th>Data do Cadastro</th>
 						</tr>
 					</thead>
 					<tbody>

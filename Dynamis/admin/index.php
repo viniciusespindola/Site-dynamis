@@ -2,14 +2,19 @@
 header("content-type: text/html;charset=utf-8");
 require_once('../config/config.inc.php');
 
-
-
-
 $mes = date("m");
 $meses = array("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro");
-$resultMesAtual = $meses[$mes - 1];
-$resultMesAnterior = $meses[$mes - 2];
-$resultMesAntesAnterior = $meses[$mes - 3];
+
+
+$resultMesAtual = $mes;
+$mesAtualEx = $meses[$mes -1];
+
+$resultMesAnterior = $mes - 1;
+$mesAnteriorEx = $meses[$mes -2];
+
+$resultMesAntesAnterior = $mes - 2;
+$mesAnteAnteriorEx = $meses[$mes -3];
+
 $ler = new ler;
 $ler->Query("count(cd_usuario)", "tb_usuario u","where mes_cadastro = '$resultMesAntesAnterior'");
 ?>
@@ -23,23 +28,23 @@ $ler->Query("count(cd_usuario)", "tb_usuario u","where mes_cadastro = '$resultMe
 	}
 </style>
 
- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Mês', 'Usuários'],
-          ['<?php echo $resultMesAntesAnterior; ?>',  <?php $ler->Query("count(cd_usuario)", "tb_usuario u","where mes_cadastro = '$resultMesAntesAnterior'");
+          ['<?php echo $mesAnteAnteriorEx; ?>',  <?php $ler->Query("count(cd_usuario)", "tb_usuario u","where MONTH(dt_cadastro_user) = '$resultMesAntesAnterior'");
 echo $ler->getResultados()[0]['count(cd_usuario)']; ?>],
-          ['<?php echo $resultMesAnterior; ?>',  <?php $ler->Query("count(cd_usuario)", "tb_usuario u","where mes_cadastro = '$resultMesAnterior'");
+          ['<?php echo $mesAnteriorEx; ?>',  <?php $ler->Query("count(cd_usuario)", "tb_usuario u","where MONTH(dt_cadastro_user) = '$resultMesAnterior'");
 echo $ler->getResultados()[0]['count(cd_usuario)']; ?>],
-          ['<?php echo $resultMesAtual; ?>',  <?php $ler->Query("count(cd_usuario)", "tb_usuario u","where mes_cadastro = '$resultMesAtual'"); echo $ler->getResultados()[0]['count(cd_usuario)']; ?>]
+          ['<?php echo $mesAtualEx; ?>',  <?php $ler->Query("count(cd_usuario)", "tb_usuario u","where MONTH(dt_cadastro_user) = '$resultMesAtual'"); echo $ler->getResultados()[0]['count(cd_usuario)']; ?>]
         ]);
 
         var options = {
-          title: 'Últimos 3 meses',
+          title: 'Número de usuários cadastrados nos últimos 3 meses',
           curveType: 'none',
           legend: { position: 'bottom' }
         };
@@ -52,8 +57,20 @@ echo $ler->getResultados()[0]['count(cd_usuario)']; ?>],
 
 
 <h1 class="text-center my-5 text-muted display-3 font">Bem-Vindo Administrador</h1>
-</h1>
+
 <div class="container">
+	
+	<div class="row">
+		<div class="col-4" style="color:white;border-radius: 1px;padding: 10px;border-left:1px solid red;border-right:1px solid red; background-color: tranparent;">
+			<?php
+				$ler = new ler;
+				$ler->Query("*", "hit_counter");
+				echo "<p class='text-muted'>Total de cliques no site: ".$ler->getResultados()[0]['total_hits']."</p>";
+				echo "<p class='text-muted'>Total de acessos ao site: ".$ler->getResultados()[0]['unique_hits']."</p>";
+			?>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="col-4">
 			<hr class="my-5"/>

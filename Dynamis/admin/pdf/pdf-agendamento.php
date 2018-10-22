@@ -115,7 +115,7 @@ session_start();
 							<th>Complemento</th>
 							<th>CEP</th>
 							<th>Telefone Alternativo</th>
-							<th>Mês do cadastro</th>
+							<th>Data do Cadastro</th>
 						</tr>
 					</thead>
 					<tbody>

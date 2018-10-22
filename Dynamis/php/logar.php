@@ -1,5 +1,6 @@
 <meta charset="utf-8">
 <?php 
+error_reporting(E_ALL ^ E_NOTICE);
 header("content-type: text/html;charset=utf-8");
 session_start();
 require_once('../config/config.inc.php');
@@ -33,6 +34,7 @@ $telefone_alternativo = $ler->getResultados()[0]['cd_telefone_alt'];
 
 
 if ($ler->getResultados()) {
+	$_SESSION['ERROLOGIN'] = false;
 	$_SESSION['login'] = true;
 	$_SESSION['codigo'] = $codigo;
 	$_SESSION['nome'] = $nome;
@@ -54,7 +56,8 @@ if ($ler->getResultados()) {
 	<?php
 }
 else{
-		session_destroy();
+		$_SESSION['ERROLOGIN'] = true;
+		
 	?>
 			<script type='text/javascript'>
 				window.setTimeout("location='../login.php';",0000);

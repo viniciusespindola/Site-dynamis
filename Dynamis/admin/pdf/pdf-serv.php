@@ -9,7 +9,7 @@ require_once('../../config/config.inc.php');
 		}
 	}
 		$ler = new ler;
-		$ler->Query("cd_servico, u.cd_usuario, nm_usuario, cd_cpf,cd_cnpj, u.nm_email,nm_endereco, nm_numero,nm_complemento,cd_cep,mes_cadastro,cd_telefone,cd_telefone_alt, f.cd_func, nm_func, hr_servico_marcado, dt_servico_marcado, mes_serv, nm_segmento, nm_tipo_servico, ds_observacoes,ds_frequencia, ds_volume, un_medida, vl_orca, cd_confirmacao","tb_servico s","inner join tb_agendamento a on s.cd_agendamento = a.cd_agendamento inner join tb_usuario as u on a.cd_usuario = u.cd_usuario inner join tb_contato c on c.cd_usuario = u.cd_usuario inner join tb_funcionario f on s.cd_func = f.cd_func inner join tb_orcamento o on o.cd_agendamento = a.cd_agendamento where a.cd_agendamento = $confirme_codigo");
+		$ler->Query("cd_servico, u.cd_usuario, nm_usuario, cd_cpf,cd_cnpj, u.nm_email,nm_endereco, nm_numero,nm_complemento,cd_cep,dt_cadastro_user,cd_telefone,cd_telefone_alt, f.cd_func, nm_func, hr_servico_marcado, dt_servico_marcado, dt_cadastro_serv, nm_segmento, nm_tipo_servico, ds_observacoes,ds_frequencia, ds_volume, un_medida, vl_orca, cd_confirmacao","tb_servico s","inner join tb_agendamento a on s.cd_agendamento = a.cd_agendamento inner join tb_usuario as u on a.cd_usuario = u.cd_usuario inner join tb_contato c on c.cd_usuario = u.cd_usuario inner join tb_funcionario f on s.cd_func = f.cd_func inner join tb_orcamento o on o.cd_agendamento = a.cd_agendamento where a.cd_agendamento = $confirme_codigo");
 		
 			session_start();
 			$_SESSION['codigo'] = $ler->getResultados()[0]['cd_servico'];
@@ -17,7 +17,7 @@ require_once('../../config/config.inc.php');
 			$_SESSION['nm_func'] = $ler->getResultados()[0]['nm_func'];
 			$_SESSION['hr_serv'] = $ler->getResultados()[0]['hr_servico_marcado'];
 			$_SESSION['dt_serv'] = inverteData($ler->getResultados()[0]['dt_servico_marcado'],'-','/');
-			$_SESSION['mes_serv'] = $ler->getResultados()[0]['mes_serv'];
+			$_SESSION['mes_serv'] = $ler->getResultados()[0]['dt_cadastro_serv'];
 
 			$_SESSION['seg'] = $ler->getResultados()[0]['nm_segmento'];
 			$_SESSION['tipo'] = $ler->getResultados()[0]['nm_tipo_servico'];
@@ -37,7 +37,7 @@ require_once('../../config/config.inc.php');
 			$_SESSION['pdfnumero'] = $ler->getResultados()[0]['nm_numero'];
 			$_SESSION['pdfcomplemento'] = $ler->getResultados()[0]['nm_complemento'];
 			$_SESSION['pdfcep'] = $ler->getResultados()[0]['cd_cep'];
-			$_SESSION['pdfmes'] = $ler->getResultados()[0]['mes_cadastro'];
+			$_SESSION['pdfmes'] = inverteData($ler->getResultados()[0]['dt_cadastro_user'],'-','/');
 			$_SESSION['pdftelefone'] = $ler->getResultados()[0]['cd_telefone'];
 			$_SESSION['pdftelefone_alternativo'] = $ler->getResultados()[0]['cd_telefone_alt'];
 			

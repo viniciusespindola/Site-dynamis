@@ -70,6 +70,8 @@
 			<a href="orcamentos-admin.php"><div class="opcao"><div id="orcamento"> <span>Orçamentos</span></div></div></a>
 			
 			<a href="servicos-admin.php"><div class="opcao"><div id="services"> <span>Serviços</span></div></div></a>
+
+			<a href="func-admin.php"><div class="opcao"><div id="func"> <span>Funcionários</span></div></div></a>
 			
 			<a href="graficos.php"><div class="opcao"><div id="estatisticas"> <span>Gráficos</span></div></div></a>
 			

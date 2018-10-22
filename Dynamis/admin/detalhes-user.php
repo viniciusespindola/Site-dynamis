@@ -1,8 +1,9 @@
 <?php
 	include_once 'header-admin.php';
 	require_once('../config/config.inc.php');
-
-
+	function inverteData($data, $separar = '-', $juntar = '-'){
+		return implode($juntar, array_reverse(explode($separar, $data)));
+	}
 ?>
 	<h1 class="text-center my-5 text-muted display-3 font">Detalhes do Usuário</h1>
 <?php
@@ -13,7 +14,7 @@
 	}
 			
 		$ler = new ler;
-		$ler->Query("u.cd_usuario,cd_cpf,cd_cnpj, nm_usuario, nm_email,nm_endereco, nm_numero,nm_complemento,cd_cep,mes_cadastro,cd_telefone,cd_telefone_alt", "tb_usuario u"," inner join tb_contato  c on u.cd_usuario = c.cd_usuario where u.cd_usuario = $confirme_codigo");
+		$ler->Query("u.cd_usuario,cd_cpf,cd_cnpj, nm_usuario, nm_email,nm_endereco, nm_numero,nm_complemento,cd_cep,dt_cadastro_user,cd_telefone,cd_telefone_alt", "tb_usuario u"," inner join tb_contato  c on u.cd_usuario = c.cd_usuario where u.cd_usuario = $confirme_codigo");
 		$ler->getResultados();
 		$codigo = $ler->getResultados()[0]['cd_usuario'];
 		$nome = $ler->getResultados()[0]['nm_usuario'];
@@ -24,7 +25,7 @@
 		$numero = $ler->getResultados()[0]['nm_numero'];
 		$complemento = $ler->getResultados()[0]['nm_complemento'];
 		$cep = $ler->getResultados()[0]['cd_cep'];
-		$mes = $ler->getResultados()[0]['mes_cadastro'];
+		$mes = $ler->getResultados()[0]['dt_cadastro_user'];
 		$telefone = $ler->getResultados()[0]['cd_telefone'];
 		$telefone_alternativo = $ler->getResultados()[0]['cd_telefone_alt'];
 		?>
@@ -63,7 +64,7 @@
 				<th>Complemento</th>
 				<th>CEP</th>
 				<th>Telefone Alternativo</th>
-				<th>Mês do cadastro</th>
+				<th>Data do Cadastro</th>
 			</thead>
 
 			<tbody>
@@ -80,7 +81,7 @@
 				<?php } else {
 					echo "<td class='text-muted'><i>Nenhum valor encontrado</i></td>";
 					}?>
-				<?php echo "<td>".$mes."</td>"; ?>
+				<?php echo "<td>".inverteData($mes,'-','/')."</td>"; ?>
 				
 			</tbody>
 		</table>

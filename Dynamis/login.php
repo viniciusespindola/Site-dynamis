@@ -1,3 +1,17 @@
+<?php 
+session_start();
+if (isset($_SESSION['ERROLOGIN'])) {
+	if ($_SESSION['ERROLOGIN']) {
+		$erro_login = true;
+	}
+	else{
+		$erro_login = false;
+	}
+}
+else{
+	$erro_login = false;
+}
+?>
 <!-- Cabeçalho do site -->
 <?php
 	include_once('header.php');
@@ -70,6 +84,11 @@
 		<!-- Formulário de login -->
 		<div class="row  mb-5">
 			<div class="col-sm-12 col-md-10 col-lg-8">
+				<?php if ($erro_login) { ?>
+						<div class="alert alert-danger col-sm-7" role="alert">
+							<strong>Ops!</strong> Seu E-mail ou senha está incorreto.
+						</div>	
+				<?php } ?>
 				<form name="formulario" id="formulario" method="POST" action="php/logar.php" >
 					<div class="form-row">
 						<div class="form-group col-sm-7">
@@ -138,3 +157,5 @@
 <?php
 	include_once('footer.php');
 ?>
+
+<?php $_SESSION['ERROLOGIN'] = false; ?>

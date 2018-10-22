@@ -149,12 +149,12 @@
 
 						<div class="form-group col-sm-4">
 							<label for="inputCPF">CPF:</label>
-							<input type="number" name="cpf" class="form-control" id="inputCPF" placeholder="Digite apenas números">
+							<input type="number" name="cpf" class="form-control" id="inputCPF" placeholder="Digite apenas números" onblur="bloquear();">
 						</div>
 
 						<div class="form-group col-sm-4">
 							<label for="inputCNPJ">CNPJ:</label>
-							<input type="number" name="cnpj" class="form-control" id="inputCNPJ" placeholder="Digite apenas números">
+							<input type="number" name="cnpj" class="form-control" id="inputCNPJ" placeholder="Digite apenas números" onblur="bloquear();">
 						</div>
 
 
@@ -236,3 +236,24 @@
 <?php
 	include_once('footer.php');
 ?>
+
+<script type="text/javascript">
+
+	function bloquear()
+	{
+		var cpf = document.getElementById("inputCPF");	
+		var cnpj = document.getElementById("inputCNPJ");
+
+		if(cpf.value != "")
+		{
+			cnpj.disabled = true;
+			cnpj.placeholder = "";
+		}
+
+		if(cnpj.value != "")
+		{
+			cpf.disabled = true;
+			cpf.placeholder = "";
+		}
+	}
+</script>

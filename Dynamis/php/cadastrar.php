@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 
 <?php 
-
+error_reporting(E_ALL ^ E_NOTICE);
 //Incluindo as classes do CRUD
 require_once('../config/config.inc.php');
 
